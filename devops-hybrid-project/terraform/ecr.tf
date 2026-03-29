@@ -1,3 +1,3 @@
-resource "aws_ecr_repository" "repo" {
-  name = "devops-app-repo"
-}
+#resource "aws_ecr_repository" "repo" {
+# name = "devops-app-repo"
+#}
