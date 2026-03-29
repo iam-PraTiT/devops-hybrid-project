@@ -7,5 +7,5 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Echo
-        run: echo "Workflow is working"
+      - name: Test Step
+        run: echo "GitHub Actions is working"
