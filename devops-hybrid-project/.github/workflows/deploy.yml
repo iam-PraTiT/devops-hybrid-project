@@ -43,3 +43,10 @@ jobs:
     - name: Push to ECR
       run: |
         docker push 259030234494.dkr.ecr.us-east-1.amazonaws.com/$ECR_REPOSITORY:$IMAGE_TAG
+
+        on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+  
