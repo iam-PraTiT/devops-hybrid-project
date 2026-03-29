@@ -7,5 +7,4 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Test Step
-        run: echo "GitHub Actions is working"
+      - run: echo "Working"
