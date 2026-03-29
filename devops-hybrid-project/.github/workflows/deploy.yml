@@ -1,51 +1,11 @@
-name: DevOps CI/CD Pipeline
+name: Test Workflow
 
 on:
-  push:
-    branches:
-      - main
-
-env:
-  AWS_REGION: us-east-1
-  ECR_REPOSITORY: devops-app-repo
-  IMAGE_TAG: latest
+  workflow_dispatch:
 
 jobs:
-  build-and-push:
-    name: Build & Push to ECR
+  test:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v2
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
-        aws-region: ${{ env.AWS_REGION }}
-
-    - name: Login to ECR
-      run: |
-        aws ecr get-login-password --region $AWS_REGION | \
-        docker login --username AWS --password-stdin 259030234494.dkr.ecr.us-east-1.amazonaws.com
-
-    - name: Build Docker Image
-      run: |
-        docker build -t $ECR_REPOSITORY:$IMAGE_TAG ./app
-
-    - name: Tag Image
-      run: |
-        docker tag $ECR_REPOSITORY:$IMAGE_TAG \
-        259030234494.dkr.ecr.us-east-1.amazonaws.com/$ECR_REPOSITORY:$IMAGE_TAG
-
-    - name: Push to ECR
-      run: |
-        docker push 259030234494.dkr.ecr.us-east-1.amazonaws.com/$ECR_REPOSITORY:$IMAGE_TAG
-
-        on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+      - name: Echo
+        run: echo "Workflow is working"
